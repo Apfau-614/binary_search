@@ -114,7 +114,6 @@ def bounded_argmin(f, lo, hi, epsilon=1e-3):
     third = (hi - lo) / 3
     m1 = lo + third
     m2 = hi - third
-
     if f(m1) < f(m2):
         return bounded_argmin(f, lo, m2, epsilon)
     else:
