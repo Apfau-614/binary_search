@@ -63,6 +63,18 @@ def find_largest_negative(xs, lo=0, hi=None):
     '''
 
 
+    if hi is None:
+        hi = len(xs)
+    if lo >= hi:
+        return None
+    mid = (hi + lo) // 2
+    if xs[mid] < 0:
+        result = find_largest_negative(xs, mid + 1, hi)
+        return mid if result is None else result
+    else:
+        return find_largest_negative(xs, lo, mid)
+
+
 def find_smallest(xs, lo=0, hi=None):
     '''
     Assume that xs is a list of numbers that is strictly decreasing
@@ -86,6 +98,65 @@ def find_smallest(xs, lo=0, hi=None):
     '''
 
 
+    if hi is None:
+        hi = len(xs)
+    if lo >= hi:
+        return None
+    if hi - lo == 1:
+        return lo
+    mid = (hi + lo) //2
+    if xs[mid - 1] > xs[mid]:
+        return find_smallest(xs, mid, hi)
+    else: return find_smallest(xs, lo, mid)
+
+
+def binary_lowest_index_ltet(xs, x):
+    '''
+    finds the lowest index with a value >=x
+    + returns the length of the list if there isn't one
+
+    >>> binary_lowest_index_ltet([7, 6, 5, 4, 3, 2, 1, 0], 5)
+    3
+    >>> binary_lowest_index_ltet([4, 3, 2, 1], 5)
+    0
+    >>> binary_lowest_index_ltet([4, 3, 2, 1], 0)
+    4
+    '''
+    left = 0
+    right = len(xs)
+    while left < right:
+        mid = (left + right) // 2
+        if xs[mid] <= x:
+            right = mid + 1
+        else:
+            left = mid + 1
+    return left
+
+
+def binary_lowest_index_gt(xs,x):
+    '''
+    find the lowest index with a value < x
+    + returns the length of the list if there isn't one
+
+    >>> binary_lowest_index_gt([7, 6, 5, 4, 3, 2, 1, 0], 4)
+    3
+    >>> binary_lowest_index_gt([4, 3, 2, 1],5)
+    0
+    >>> binary_lowest_index_gt([4, 3, 2, 1],0)
+    4
+    '''
+
+    left = 0
+    right = len(xs)
+    while left < right:
+        mid = (left + right) //2
+        if xs[mid] < x:
+            right = mid
+        else:
+            left = mid + 1
+    return left
+
+
 def count_repeats(xs, x):
     '''
     Assume that xs is a list of numbers sorted from HIGHEST to LOWEST,
@@ -107,3 +178,7 @@ def count_repeats(xs, x):
     >>> count_repeats([3, 2, 1], 4)
     0
     '''
+
+    start = binary_lowest_index_ltet(xs, x)
+    end = binary_lowest_index_gt(xs,x)
+    return end - start
