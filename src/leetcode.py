@@ -61,8 +61,6 @@ def find_largest_negative(xs, lo=0, hi=None):
     >>> find_largest_negative([-3, -2, -1])
     2
     '''
-
-
     if hi is None:
         hi = len(xs)
     if lo >= hi:
@@ -96,8 +94,6 @@ def find_smallest(xs, lo=0, hi=None):
     >>> find_smallest([]) is None
     True
     '''
-
-
     if hi is None:
         hi = len(xs)
     if lo >= hi:
@@ -133,7 +129,7 @@ def binary_lowest_index_ltet(xs, x):
     return left
 
 
-def binary_lowest_index_gt(xs,x):
+def binary_lowest_index_gt(xs, x):
     '''
     find the lowest index with a value < x
     + returns the length of the list if there isn't one
@@ -145,7 +141,6 @@ def binary_lowest_index_gt(xs,x):
     >>> binary_lowest_index_gt([4, 3, 2, 1],0)
     4
     '''
-
     left = 0
     right = len(xs)
     while left < right:
@@ -178,7 +173,6 @@ def count_repeats(xs, x):
     >>> count_repeats([3, 2, 1], 4)
     0
     '''
-
     start = binary_lowest_index_ltet(xs, x)
-    end = binary_lowest_index_gt(xs,x)
+    end = binary_lowest_index_gt(xs, x)
     return end - start
