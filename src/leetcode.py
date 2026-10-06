@@ -123,7 +123,7 @@ def binary_lowest_index_ltet(xs, x):
     while left < right:
         mid = (left + right) // 2
         if xs[mid] <= x:
-            right = mid + 1
+            right = mid
         else:
             left = mid + 1
     return left
