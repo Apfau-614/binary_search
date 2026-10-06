@@ -118,7 +118,7 @@ def bounded_argmin(f, lo, hi, epsilon=1e-3):
     if f(m1) < f(m2):
         return bounded_argmin(f, lo, m2, epsilon)
     else:
-        return bounded_argmin(f, lo, m2, epsilon)
+        return bounded_argmin(f, m1, hi, epsilon)
 
 
 def find_boundaries(f, lo = -1, hi = 1):
@@ -137,11 +137,10 @@ def find_boundaries(f, lo = -1, hi = 1):
     else:
         you're done; return lo,hi
     '''
-
     mid = (lo + hi) / 2
-    if f(lo) < f(mid):
+    if f(lo) <= f(mid):
         return find_boundaries(f, lo * 2, hi)
-    elif f(hi) < f(mid):
+    elif f(hi) <= f(mid):
         return find_boundaries(f, lo, hi * 2)
     else:
-        return lo,hi
+        return lo, hi
