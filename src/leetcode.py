@@ -100,10 +100,11 @@ def find_smallest(xs, lo=0, hi=None):
         return None
     if hi - lo == 1:
         return lo
-    mid = (hi + lo) //2
+    mid = (hi + lo) // 2
     if xs[mid - 1] > xs[mid]:
         return find_smallest(xs, mid, hi)
-    else: return find_smallest(xs, lo, mid)
+    else:
+        return find_smallest(xs, lo, mid)
 
 
 def binary_lowest_index_ltet(xs, x):
@@ -144,7 +145,7 @@ def binary_lowest_index_gt(xs, x):
     left = 0
     right = len(xs)
     while left < right:
-        mid = (left + right) //2
+        mid = (left + right) // 2
         if xs[mid] < x:
             right = mid
         else:
