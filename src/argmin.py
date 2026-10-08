@@ -7,6 +7,7 @@ The main function of this file is called argmin.
 It takes another function as a parameter, which might feel unusual to you.
 Consider the example quadratic function below:
 
+
 >>> def f(x):
 ...    return (x-5)**2
 
